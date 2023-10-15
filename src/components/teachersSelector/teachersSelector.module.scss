@@ -1,0 +1,6 @@
+@import "@/app/styles/mixins.scss";
+
+.selectBlock {
+  @include FlexCenter($gap: 5px);
+  cursor: pointer;
+}

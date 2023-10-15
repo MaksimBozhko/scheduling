@@ -1,0 +1,52 @@
+@import "@/app/styles/mixins.scss";
+
+.button {
+  @include FontStyle($fw: 600, $fs: 17px, $lh: 17px);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  font-family: inherit;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #f7f7f7;
+  cursor: pointer;
+  outline: none;
+  transition-property: background;
+  transition-duration: 0.35s;
+
+  &:hover {
+    background: #486cbb;
+  }
+
+}
+
+.primary {
+  background: #4a7dff;
+}
+
+.Button.disabled {
+  color: #555455;
+  background: #302e30;
+  cursor: none;
+}
+
+.Button.loading {
+  color: rgba(255, 255, 255, 0.5);
+  background: #5d2fdf
+  repeating-linear-gradient(
+                  60deg,
+                  transparent,
+                  transparent 10px,
+                  #5526c5 10px,
+                  #5526c5 20px
+  );
+}
+
+
+.fullWidth {
+  width: 100%;
+}

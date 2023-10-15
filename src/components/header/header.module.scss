@@ -1,0 +1,13 @@
+@import "@/app/styles/variables.scss";
+@import "@/app/styles/mixins.scss";
+
+.header {
+  @include FlexCenter($gap: 15px, $jc: center);
+  @include FontStyle($fw: 700, $fs: 20px);
+  padding: 0 10px;
+  height: 60px;
+  background-color: $header;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 2px #b3b5f5 solid;
+}

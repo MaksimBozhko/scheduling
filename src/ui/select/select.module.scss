@@ -1,0 +1,115 @@
+@import "@/app/styles/variables.scss";
+@import "@/app/styles/mixins.scss";
+
+.select {
+  position: relative;
+  height: auto;
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+
+  &.disabled {
+    background-color: #d3d3d3;
+    cursor: auto;
+
+    input {
+      background-color: #d3d3d3;
+      cursor: auto;
+    }
+  }
+
+  .input {
+    display: flex;
+    width: 100%;
+    border: 1px solid $border;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+
+    .prefix {
+      position: relative;
+      display: flex;
+      padding: 0 5px;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      border-left: 1px $border solid;
+      cursor: pointer;
+
+      &.disabled {
+        cursor: auto;
+      }
+
+      .icon {
+        position: absolute;
+        top: 45%;
+        transform: translateY(-50%) rotate(0deg);
+        font-size: 25px;
+        color: $border;
+        display: flex;
+        align-items: center;
+        padding-top: 5px;
+        transition: transform .2s ease;
+        pointer-events: none;
+      }
+      .active {
+        transform: translateY(-50%) rotate(-90deg);
+      }
+    }
+  }
+
+  .options {
+    @include FontStyle($fw: 400, $fs: 18px);
+    position: absolute;
+    z-index: 10000;
+    background: white;
+    width: 100%;
+    max-height: 220px;
+    border: 1px solid $border;
+    border-radius: 5px;
+    top: 80%;
+    transform: translateY(0);
+    overflow: hidden;
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease;
+  }
+
+  .active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(5%);
+  }
+}
+
+input {
+  @include FontStyle($fw: 500, $fs: 18px);
+  display: flex;
+  position: relative;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  background: white;
+}
+
+li {
+  text-align: center;
+  list-style: none;
+  font-size: 17px;
+  text-transform: capitalize;
+  padding: 17px 20px;
+
+  &:hover {
+    background: $blue;
+  }
+}
+
+
+

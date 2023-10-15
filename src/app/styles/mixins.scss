@@ -1,0 +1,14 @@
+@mixin FontStyle($fw: 500, $fs: 14px, $lh: 17px, $op: 1) {
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: $lh;
+  opacity: $op;
+}
+
+@mixin FlexCenter($fd: row, $jc: space-between, $ai: center, $gap: 0px) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+  gap: $gap
+}

@@ -1,0 +1,53 @@
+@import "@/app/styles/variables.scss";
+@import "@/app/styles/mixins.scss";
+
+.table {
+  @include FontStyle($fw: 400, $fs: 18px, $lh: 17px, $op: 1);
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  border: 1px $border solid;
+
+  .header > *,
+  .body > * {
+    padding: 10px;
+    border: 1px $border solid;
+  }
+  .body > * {
+    background-color: #f9fcff;
+  }
+
+  .header {
+    background-color: #fdf9f9;
+    font-weight: bold;
+    border-bottom: 1px red solid;
+    white-space: nowrap;
+
+    .centerBlock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .cellTitle {
+      width: 100px;
+    }
+
+    .cellHours {
+      width: 50px;
+    }
+  }
+
+  .cellHours {
+    width: 50px;
+  }
+
+  .textarea {
+    height: 100px;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,11 @@
+@import "@/app/styles/variables.scss";
+
+.card {
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid $border;
+}
+
+.max {
+  width: 100%;
+}

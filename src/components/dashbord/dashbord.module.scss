@@ -1,0 +1,12 @@
+.dashbord {
+  display: flex;
+  flex-direction: column;
+
+  .table {
+    margin: 15px 0;
+  }
+
+  .btn {
+    align-self: end;
+  }
+}
