@@ -6,21 +6,20 @@
   border-collapse: collapse;
   width: 100%;
   text-align: center;
-  border: 1px $border solid;
 
   .header > *,
   .body > * {
     padding: 10px;
     border: 1px $border solid;
   }
-  .body > * {
+  .body {
     background-color: #f9fcff;
   }
 
   .header {
     background-color: #fdf9f9;
     font-weight: bold;
-    border-bottom: 1px red solid;
+    border-bottom: 2px #242b4f solid;
     white-space: nowrap;
 
     .centerBlock {

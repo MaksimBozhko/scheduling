@@ -21,32 +21,18 @@
   &:hover {
     background: #486cbb;
   }
-
 }
 
 .primary {
   background: #4a7dff;
 }
 
-.Button.disabled {
-  color: #555455;
-  background: #302e30;
-  cursor: none;
-}
+.disabled {
+  background: #2a2a3b;
+  cursor: auto;
+  opacity: 0.7;
 
-.Button.loading {
-  color: rgba(255, 255, 255, 0.5);
-  background: #5d2fdf
-  repeating-linear-gradient(
-                  60deg,
-                  transparent,
-                  transparent 10px,
-                  #5526c5 10px,
-                  #5526c5 20px
-  );
-}
-
-
-.fullWidth {
-  width: 100%;
+  &:hover {
+    background: #2a2a3b;
+  }
 }

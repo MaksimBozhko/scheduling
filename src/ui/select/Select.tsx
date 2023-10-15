@@ -6,7 +6,6 @@ import { classNames } from '@/common/lib/classNames';
 interface ISelect {
   Icon: React.FunctionComponent<React.ComponentProps<'svg'> & { title?: string }>
   className?: string
-  // Icon: any
   optionsList: OptionsList[];
   onChange: (id: string) => void
   value: string

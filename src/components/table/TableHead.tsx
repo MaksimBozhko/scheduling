@@ -30,14 +30,14 @@ export const TableHead: FC<ITableHead> = (props) => {
 
   return (
     <tr className={cls.header}>
-      <th scope="col" className={classNames(cls.cellTitle)}>Занятие</th>
-      <th scope="col" className={classNames(cls.cellHours)}>Часы</th>
+      <th scope="col" className={classNames(cls.cell, {}, [cls.cellTitle])}>Занятие</th>
+      <th scope="col" className={classNames(cls.cell, {}, [cls.cellHours])}>Часы</th>
       {
         countPodgroups === '2'
           ? (
             <>
-              <th scope="col" className={classNames(cls.cellTitle)}>Подгруппа 1</th>
-              <th scope="col" className={classNames(cls.cellTitle)}>
+              <th scope="col" className={classNames(cls.cell, {}, [cls.cellTitle])}>Подгруппа 1</th>
+              <th scope="col" className={classNames(cls.cell, {}, [cls.cellTitle])}>
                 <div className={cls.centerBlock}>
                   <span>Подгруппа 2</span>
                   <RemoveIcon
@@ -50,7 +50,7 @@ export const TableHead: FC<ITableHead> = (props) => {
             </>
           )
           : (
-            <th scope="col" className={classNames(cls.cellTitle)}>
+            <th scope="col" className={classNames(cls.cell, {}, [cls.cellTitle])}>
               <div className={cls.centerBlock}>
                 <span>Преподаватель</span>
                 <AddIcon

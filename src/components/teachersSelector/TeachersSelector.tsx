@@ -10,7 +10,7 @@ import FilterIcon from '@/assets/filter.svg?react'
 
 export type KeyType = 'laboratoryTeacher' | 'lectureTeacher' | 'practiceTeacher' | 'seminarTeacher' | "countStudents"
 
-interface ITeachersSelector {
+export interface ITeachersSelector {
   className?: string
   disabled?: boolean
   groupId: string

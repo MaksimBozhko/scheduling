@@ -2,8 +2,9 @@ import cls from './table.module.scss'
 import { FC, FunctionComponent, useMemo } from 'react';
 import { IHours, IPodgroup } from '@/store/types/types';
 import { AdditionalInfoTextarea, CountStudentsInput, TeachersSelector } from '@/components';
-import { KeyType } from '@/components/teachersSelector/TeachersSelector';
+import { ITeachersSelector, KeyType } from '@/components/teachersSelector/TeachersSelector';
 import { classNames } from '@/common/lib/classNames';
+import { IAdditionalInfo } from '@/components/countStudentsInput/CountStudentsInput';
 
 interface ITableBody {
   className?: string
@@ -20,7 +21,7 @@ interface IDataTable<T> {
   hours: string
   key?: KeyType
   value?: string
-  component?: FunctionComponent<T>
+  component: FunctionComponent<T>
   filter?: boolean
 }
 
@@ -39,50 +40,52 @@ export const TableBody: FC<ITableBody> = (props) => {
         title: 'Лекции',
         hours: hours.lecturesHours,
         key: 'lectureTeacher',
-        component: Component,
+        component: TeachersSelector,
         filter: true
       },
       {
         title: 'Лабораторные работы',
         hours: hours.laboratoryHours,
         key: 'laboratoryTeacher',
-        component: Component
+        component: TeachersSelector
       },
       {
         title: 'Практические',
         hours: hours.practicHours,
         key: 'practiceTeacher',
-        component: Component
+        component: TeachersSelector
       },
       {
         title: 'Семинарские',
         hours: hours.seminarHours,
         key: 'seminarTeacher',
-        component: Component
+        component: TeachersSelector
       },
       (offset && {
         title: 'Зачёт',
         hours: '',
         key: 'offsetTeacher',
-        component: Component
+        component: TeachersSelector
       }),
       (exam && {
         title: 'Экзамен',
         hours: '',
         key: 'examTeacher',
-        component: Component
+        component: TeachersSelector
       }),
-      (podgroups.length === 2 && {
+      (countPodgroups === '2' && {
         title: 'Количество человек',
         hours: '',
-        key: 'countStudents'
+        key: 'countStudents',
+        component: CountStudentsInput
       }),
       {
         title: 'Примечание (для составления расписания)',
         hours: '',
+        component: AdditionalInfoTextarea
       }
     ].filter(Boolean)),
-    [hours, exam, offset, podgroups]) as IDataTable<ComponentProps>[]
+    [hours, exam, offset, countPodgroups]) as IDataTable<ITeachersSelector | IAdditionalInfo>[]
 
   return (
     <>
@@ -91,40 +94,17 @@ export const TableBody: FC<ITableBody> = (props) => {
 
           if (data.length - 1 === index) {
             return (
-              <tr className={classNames(cls.body, {}, )} key={course.title}>
+              <tr className={classNames(cls.body, {},)} key={course.title}>
                 <td className={cls.cell}>{course.title}</td>
-                <td className={cls.cellHours}>{course.hours}</td>
+                <td className={classNames(cls.cell, {}, [cls.cellHours])}>{course.hours}</td>
                 {
                   podgroups.length === 2
-                    ? <td colSpan={2} className={cls.textarea}><AdditionalInfoTextarea groupId={groupId}/></td>
-                    : <td className={cls.textarea}><AdditionalInfoTextarea groupId={groupId}/></td>
-                }
-              </tr>
-            )
-          }
-
-          if (course.title === 'Количество человек') {
-            return (
-              <tr className={cls.body} key={course.title}>
-                <td className={cls.cell}>{course.title}</td>
-                <td className={cls.cellHours}>{course.hours}</td>
-                <td className={cls.cellHours}>
-                  <CountStudentsInput
-                    groupId={groupId}
-                    podgroupNumber={0}
-                    countKey={course.key}
-                  />
-                </td>
-                {
-                  countPodgroups === '2' && (
-                    <td className={cls.cellHours}>
-                      <CountStudentsInput
-                        groupId={groupId}
-                        podgroupNumber={1}
-                        countKey={course.key}
-                      />
+                    ? <td colSpan={2} className={classNames(cls.cell, {}, [cls.textarea])}><AdditionalInfoTextarea
+                      groupId={groupId}/></td>
+                    :
+                    <td className={classNames(cls.cell, {}, [cls.textarea])}><AdditionalInfoTextarea groupId={groupId}/>
                     </td>
-                  )}
+                }
               </tr>
             )
           }
@@ -132,65 +112,33 @@ export const TableBody: FC<ITableBody> = (props) => {
           return (
             <tr className={cls.body} key={course.title}>
               <td className={cls.cell}>{course.title}</td>
-              <td className={cls.cellHours}>{course.hours}</td>
-              <td className={cls.cell}>
-                {course.component ? (
-                  <course.component
-                    teacherKey={course.key}
-                    groupId={groupId}
-                    podgroupNumber={0}
-                    disabled={course.hours === '0'}
-                    filter={course.filter}
-                  />
-                ) : (
-                  course.title
-                )}
-              </td>
-              {countPodgroups === '2' &&
-                <td className={cls.cell}>
-                  {course.component ? (
-                    <course.component
-                      teacherKey={course.key}
-                      groupId={groupId}
-                      podgroupNumber={1}
-                      disabled={course.hours === '0'}
-                      filter={course.filter}
-                    />
-                  ) : (
-                    course.title
-                  )}
-                </td>}
+              <td className={classNames(cls.cell, {}, [cls.cellHours])}>{course.hours}</td>
+              {
+                podgroups.map((_, index) => (
+                  <td key={`${course.key}_${index}`} className={cls.cell}>
+                    {course.component === TeachersSelector ? (
+                      <course.component
+                        teacherKey={course.key}
+                        groupId={groupId}
+                        podgroupNumber={index}
+                        disabled={course.hours === '0'}
+                        filter={course.filter}
+                      />
+                    ) : (
+                      <course.component
+                        countKey={course.key}
+                        groupId={groupId}
+                        podgroupNumber={index}
+                      />
+                    )
+                    }
+                  </td>
+                ))
+              }
             </tr>
           )
         })
       }
     </>
-  )
-}
-
-type ComponentProps = {
-  teacherKey?: KeyType
-  groupId: string
-  podgroupNumber: number
-  disabled: boolean
-  filter?: boolean
-}
-
-export const Component = (props: ComponentProps) => {
-  const {
-    teacherKey,
-    groupId,
-    podgroupNumber,
-    disabled,
-    filter
-  } = props
-  return (
-    <TeachersSelector
-      teacherKey={teacherKey}
-      groupId={groupId}
-      podgroupNumber={podgroupNumber}
-      disabled={disabled}
-      filter={filter}
-    />
   )
 }

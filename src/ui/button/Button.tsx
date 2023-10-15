@@ -2,29 +2,22 @@ import { ButtonHTMLAttributes, FC, memo } from 'react';
 import cls from './button.module.scss';
 import { Mods } from '@/common/lib/classNames/classNames';
 import { classNames } from '@/common/lib/classNames';
-import { Loader } from '@/ui';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   disabled?: boolean
-  fullWidth?: boolean
-  title: string
-  isLoading?: boolean
 }
 
 export const Button: FC<IButton> = memo((props) => {
   const {
     className,
     disabled,
-    fullWidth,
-    title,
-    isLoading,
+    children,
     ...otherProps
   } = props;
 
   const mode: Mods = {
     [cls.disabled]: disabled,
-    [cls.fullWidth]: fullWidth,
   }
 
   return (
@@ -34,11 +27,7 @@ export const Button: FC<IButton> = memo((props) => {
       disabled={disabled}
       {...otherProps}
     >
-      {
-        isLoading
-          ? <Loader/>
-          : title
-      }
+      {children}
     </button>
   )
 })

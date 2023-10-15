@@ -116,8 +116,9 @@ const SubjectReducer = (state = initialState, action: ActionsType) => {
             examTeacher: '',
             offsetTeacher: ''
           })
+          const countPodgroups = (+subject.countPodgroups + 1).toString()
 
-          return {...subject, podgroups: [...subject.podgroups]};
+          return {...subject, countPodgroups, podgroups: [...subject.podgroups]};
         }
         return subject;
       });
@@ -130,7 +131,8 @@ const SubjectReducer = (state = initialState, action: ActionsType) => {
           const updatedPodgroups = [...subject.podgroups];
           updatedPodgroups.pop();
           updatedPodgroups[0].countStudents = subject.groupInfo.studentsNumber
-          return {...subject, podgroups: updatedPodgroups};
+          const countPodgroups = (+subject.countPodgroups - 1).toString()
+          return {...subject, countPodgroups, podgroups: updatedPodgroups};
         }
         return subject;
       });

@@ -6,7 +6,7 @@
   height: auto;
   display: flex;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #fff;
   cursor: pointer;
 
@@ -24,7 +24,7 @@
     display: flex;
     width: 100%;
     border: 1px solid $border;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px;
     text-align: center;
 
@@ -62,10 +62,10 @@
   }
 
   .options {
-    @include FontStyle($fw: 400, $fs: 18px);
     position: absolute;
     z-index: 10000;
     background: white;
+    min-width: 150px;
     width: 100%;
     max-height: 220px;
     border: 1px solid $border;
@@ -87,7 +87,7 @@
 }
 
 input {
-  @include FontStyle($fw: 500, $fs: 18px);
+  @include FontStyle($fw: 500, $fs: 17px);
   display: flex;
   position: relative;
   width: 100%;
@@ -102,7 +102,7 @@ input {
 li {
   text-align: center;
   list-style: none;
-  font-size: 17px;
+  font-size: 18px;
   text-transform: capitalize;
   padding: 17px 20px;
 

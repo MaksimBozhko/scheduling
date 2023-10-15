@@ -11,7 +11,7 @@ interface IGroup {
 export const GroupInfo: FC<IGroup> = memo((props) => {
   const { className, groupInfo } = props
 
-  const info = useMemo(() => ([
+  const infoGroup = useMemo(() => ([
     {
       name: 'Группа',
       value: groupInfo.groupName
@@ -32,7 +32,7 @@ export const GroupInfo: FC<IGroup> = memo((props) => {
 
   return (
     <div className={classNames(cls.groupInfo, {}, [className])}>
-      {info.map((item) => {
+      {infoGroup.map((item) => {
         return (
           <div className={cls.item} key={item.name}>
             <span className={cls.name}>

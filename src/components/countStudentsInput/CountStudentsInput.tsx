@@ -7,7 +7,7 @@ import { getPodgroupValue } from '@/store/selectors/selectors';
 import { actions } from '@/store/acitons/actions';
 import { KeyType } from '@/components/teachersSelector/TeachersSelector';
 
-interface IAdditionalInfo {
+export interface IAdditionalInfo {
   className?: string
   groupId: string
   podgroupNumber: number
@@ -24,8 +24,6 @@ export const CountStudentsInput: FC<IAdditionalInfo> = (props) => {
 
   const dispatch = useAppDispatch()
   const value = useAppSelector(getPodgroupValue(groupId, podgroupNumber, countKey))
-
-  console.log(value)
 
   const changeTextareaHandler = useCallback((value: string) => {
     dispatch(actions.setCountStudents({groupId, podgroupNumber, countStudents: value}))

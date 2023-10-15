@@ -36,8 +36,9 @@ export const Dashbord: FC<IDashbord> = memo((props) => {
       <Button
         className={cls.btn}
         onClick={saveDataHandler}
-        title={'Сохранить'}
-      />
+      >
+      Сохранить
+      </Button>
     </Card>
   )
 })

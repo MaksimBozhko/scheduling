@@ -1,6 +1,19 @@
+@import "@/app/styles/mixins.scss";
+
 .page {
+  @include FlexCenter($fd: column, $jc: center, $ai: center, $gap: 20px);
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  .text {
+    @include FontStyle($fs: 25px, $fw: 700);
+
+    .textRed {
+      @include FontStyle($fs: 35px, $fw: 700);
+      color: red;
+    }
+  }
+
+  .textError {
+    @include FontStyle($fs: 20px, $fw: 600)
+  }
 }

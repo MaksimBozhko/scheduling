@@ -1,4 +1,4 @@
-import React, { FC, InputHTMLAttributes, memo, useRef, } from 'react';
+import { ChangeEvent, FC, InputHTMLAttributes, memo, } from 'react';
 import cls from './Input.module.scss'
 import { classNames } from '@/common/lib/classNames';
 
@@ -21,16 +21,13 @@ export const Input: FC<IInput> = memo((props) => {
     ...otherProps
   } = props
 
-  const ref = useRef<HTMLInputElement>(null)
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value)
   }
 
   return (
     <div className={classNames(cls.inputWrapper, {}, [className])}>
       <input
-        ref={ref}
         value={value}
         onChange={onChangeHandler}
         type={type}

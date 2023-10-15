@@ -7,7 +7,8 @@ export const PageError = () => {
   const error = useAppSelector(getError)
   return (
     <div className={classNames(cls.page)}>
-      {error}
+      <div className={cls.text}><span className={cls.textRed}>OOPS!!!</span> Something went wrong (maybe it was CORS)</div>
+      <div className={cls.textError}>{error}</div>
     </div>
   )
 }
