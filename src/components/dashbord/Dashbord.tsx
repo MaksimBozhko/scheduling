@@ -1,11 +1,9 @@
 import cls from './dashbord.module.scss'
-import { FC, memo, useCallback } from 'react'
+import { FC, memo } from 'react'
 import { classNames } from '@/common/lib/classNames';
 import { GroupInfo, Header, Table } from '@/components';
-import { Button, Card } from '@/ui';
+import { Card } from '@/ui';
 import { IGroupsInfo } from '@/store/types/types';
-import { useAppDispatch } from '@/common/hooks/useAppDispatch';
-import { asyncActions } from '@/store/acitons/asyncActions';
 
 interface IDashbord {
   className?: string
@@ -13,15 +11,10 @@ interface IDashbord {
 }
 
 export const Dashbord: FC<IDashbord> = memo((props) => {
-  const { className, data } = props
-  const dispatch = useAppDispatch()
-
-  const saveDataHandler = useCallback(() => {
-    dispatch(asyncActions.saveData())
-  }, [dispatch])
+  const {className, data} = props
 
   return (
-    <Card className={classNames(cls.dashbord, {}, [className])}>
+    <Card className={classNames(cls.dashbord, {}, [className])} max>
       <Header subjectName={data.subjectName}/>
       <GroupInfo groupInfo={data.groupInfo}/>
       <Table
@@ -33,12 +26,6 @@ export const Dashbord: FC<IDashbord> = memo((props) => {
         hours={data.hours}
         countPodgroups={data.countPodgroups}
       />
-      <Button
-        className={cls.btn}
-        onClick={saveDataHandler}
-      >
-      Сохранить
-      </Button>
     </Card>
   )
 })

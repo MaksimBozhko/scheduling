@@ -7,6 +7,7 @@ import { getData, getError, getIsLoading } from '@/store/selectors/selectors';
 import { Loader } from '@/ui';
 import { PageError } from '@/components/pageError';
 import { asyncActions } from '@/store/acitons/asyncActions';
+import { SaveButton } from '@/components/saveButton';
 
 function App() {
   const dispatch = useAppDispatch()
@@ -25,15 +26,18 @@ function App() {
     return <Loader/>
   }
   return (
-    <div className={'App'}>
-      {
-        data.map((subject) => (
-          <Dashbord
-            key={subject.uniqueId}
-            data={subject}
-          />
-        ))
-      }
+    <div>
+      <div className={'content'}>
+        {
+          data.map((subject) => (
+            <Dashbord
+              key={subject.uniqueId}
+              data={subject}
+            />
+          ))
+        }
+      </div>
+      <SaveButton className={'btn'}/>
     </div>
   )
 }

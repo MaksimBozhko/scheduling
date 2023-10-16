@@ -1,7 +1,9 @@
+@import "@/app/styles/mixins.scss";
+
 .loader {
-  display: flex;
-  justify-content: center;
+  @include FlexCenter($jc: center, $ai: center);
   width: 100%;
+  height: 100%;
 }
 
 .lds-ellipsis {
