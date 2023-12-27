@@ -90,6 +90,7 @@ input {
   @include FontStyle($fw: 500, $fs: 17px);
   display: flex;
   position: relative;
+  color: black;
   width: 100%;
   outline: none;
   border: none;
